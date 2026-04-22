@@ -1,2 +1,2 @@
-# tgb:
-# arn: arn:aws:elasticloadbalancing:us-east-1:307223751858:targetgroup/roboshop-dev-frontend/27dac2cca66cd868
+tgb:
+arn: arn:aws:elasticloadbalancing:us-east-1:307223751858:targetgroup/roboshop-dev-frontend/27dac2cca66cd868

@@ -140,33 +140,14 @@ spec:
       port: {{ .Values.service.servicePort }} # service port
       targetPort: 8080 # container port
 ---
-# apiVersion: elbv2.k8s.aws/v1beta1
-# kind: TargetGroupBinding
-# metadata:
-#   name: frontend
-#   namespace: roboshop
-# spec:
-#   serviceRef:
-#     name: frontend # route traffic to the awesome-service
-#     port: 80
-#   targetGroupARN: {{ .Values.tgb.arn }}
-#   targetType: ip
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
 metadata:
   name: frontend
   namespace: roboshop
-  annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
 spec:
-  ingressClassName: alb
-  rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: frontend
-                port:
-                  number: 80
+  serviceRef:
+    name: frontend # route traffic to the awesome-service
+    port: 80
+  targetGroupARN: {{ .Values.tgb.arn }}
+  targetType: ip
